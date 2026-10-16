@@ -17,6 +17,7 @@ public class AppListener implements ServletContextListener, HttpSessionListener 
         String appName = event.getServletContext().getInitParameter("appName");
         event.getServletContext().setAttribute("startedBy", "AppListener for " + appName);
         event.getServletContext().setAttribute("activeSessions", activeSessions);
+        event.getServletContext().addServlet("programmatic", new StatusServlet("ServletContext.addServlet")).addMapping("/programmatic");
         EventLog.record("context initialized for " + appName);
     }
 

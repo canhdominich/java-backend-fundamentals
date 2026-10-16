@@ -20,6 +20,10 @@ public final class FilterProbes {
             System.out.println("-- ServletConfig and ServletContext");
             System.out.print(get(client, base + "/config").body());
 
+            System.out.println("-- servlets registered in web.xml and in code (the annotation way is ConfigServlet above)");
+            System.out.print(get(client, base + "/health").body());
+            System.out.print(get(client, base + "/programmatic").body());
+
             System.out.println("-- forward, include and redirect to the same target");
             show("forward ", get(client, base + "/dispatch/forward"));
             show("include ", get(client, base + "/dispatch/include"));

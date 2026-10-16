@@ -73,6 +73,12 @@ class FilterBehaviourTest {
     }
 
     @Test
+    void servletsCanBeRegisteredInWebXmlAndInCode() throws Exception {
+        assertThat(get(client, "/health").body()).contains("registered by web.xml at /health");
+        assertThat(get(client, "/programmatic").body()).contains("registered by ServletContext.addServlet at /programmatic");
+    }
+
+    @Test
     void forwardKeepsRequestAttributesAndOriginalUriButRedirectLosesThem() throws Exception {
         HttpResponse<String> forward = get(client, "/dispatch/forward");
         assertThat(forward.statusCode()).isEqualTo(202);

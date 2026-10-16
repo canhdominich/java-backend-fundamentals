@@ -7,6 +7,20 @@
         <param-value>Course Shop</param-value>
     </context-param>
 
+    <servlet>
+        <servlet-name>health</servlet-name>
+        <servlet-class>dev.canhdominich.servlet.filters.StatusServlet</servlet-class>
+        <init-param>
+            <param-name>label</param-name>
+            <param-value>web.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>health</servlet-name>
+        <url-pattern>/health</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>logging</filter-name>
         <filter-class>dev.canhdominich.servlet.filters.LoggingFilter</filter-class>

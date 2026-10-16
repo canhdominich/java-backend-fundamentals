@@ -35,6 +35,7 @@ Bạn sẽ tự chạy: tham số khởi tạo của một servlet (`ServletConf
     ApiServlet.java           đọc thân hai lần nhờ wrapper
     SecureServlet.java        /secure/data và /annotated
     FrontControllerServlet.java front controller tự viết ở /app/*
+    StatusServlet.java        servlet đăng ký bằng web.xml và bằng mã
     FilterProbes.java         chạy toàn bộ thí nghiệm và in kết quả
   src/test/java/dev/canhdominich/servlet/filters/
     FilterBehaviourTest.java
@@ -80,6 +81,15 @@ ServletContext greeting      = null
 ServletContext startedBy     = AppListener for Course Shop
 ServletContext contextPath   = ''
 ServletContext serverInfo    = Apache Tomcat/11.0.27
+-- servlets registered in web.xml and in code (the annotation way is ConfigServlet above)
+  event: logging filter: before /health
+  event: encoding filter: UTF-8 set before the servlet runs
+  event: logging filter: after /health, status 200
+status servlet registered by web.xml at /health
+  event: logging filter: before /programmatic
+  event: encoding filter: UTF-8 set before the servlet runs
+  event: logging filter: after /programmatic, status 200
+status servlet registered by ServletContext.addServlet at /programmatic
 -- forward, include and redirect to the same target
   event: logging filter: before /dispatch/forward
   event: encoding filter: UTF-8 set before the servlet runs
@@ -194,7 +204,7 @@ Thứ tự `apple` trước `zebra` của hai filter dùng annotation là thứ 
 mvn test
 ```
 
-Kết quả mong đợi: `Tests run: 10, Failures: 0, Errors: 0`.
+Kết quả mong đợi: `Tests run: 11, Failures: 0, Errors: 0`.
 
 ## Dọn dẹp
 
