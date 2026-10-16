@@ -9,6 +9,10 @@ public record DbConfig(String url, String user, String password) {
                 env("DB_PASSWORD", "app_pw"));
     }
 
+    public DbConfig withUser(String newUser) {
+        return new DbConfig(url, newUser, password);
+    }
+
     public DbConfig withUrl(String newUrl) {
         return new DbConfig(newUrl, user, password);
     }

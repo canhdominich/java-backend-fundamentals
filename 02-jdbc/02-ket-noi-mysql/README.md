@@ -24,7 +24,7 @@ Bạn sẽ chạy lại các thí nghiệm trong bài để tự thấy kết qu
   src/main/java/dev/canhdominich/jdbc/
     DbConfig.java             đọc URL, user, mật khẩu từ biến môi trường
     HelloConnection.java      kết nối tối thiểu và in thông tin phiên
-    ConnectionErrors.java     tái hiện 4 lỗi kết nối thường gặp
+    ConnectionErrors.java     tái hiện 5 lỗi kết nối thường gặp
     PoolVsDirect.java         so sánh DriverManager và HikariCP
     PoolExhaustion.java       cạn pool và cảnh báo rò rỉ kết nối
     TimezoneDemo.java         cùng một thời điểm, lưu lệch 7 giờ hay đúng, và các tên tùy chọn múi giờ
@@ -97,13 +97,14 @@ Server connection id: <một số nguyên>
 Authenticated as: app@%
 ```
 
-`ConnectionErrors` (bốn khối, mỗi khối một tình huống):
+`ConnectionErrors` (năm khối, mỗi khối một tình huống):
 
 | Tình huống | Lớp ngoại lệ | SQLState | errorCode |
 |---|---|---|---|
 | Sai mật khẩu | `SQLException` | 28000 | 1045 |
 | Sai cổng | `CommunicationsException` | 08S01 | 0 (gốc là `Connection refused`) |
 | Sai tên database (user thường) | `SQLSyntaxErrorException` | 42000 | 1044 |
+| Sai tên database (quản trị root) | `SQLSyntaxErrorException` | 42000 | 1049 (`Unknown database`) |
 | Sai tiền tố URL | `SQLException` | 08001 | 0 (`No suitable driver found`) |
 
 `PoolVsDirect`: 200 lần mượn/trả. `DriverManager` tạo **200** kết nối phía server, `HikariCP` chỉ **1** và nhanh hơn rõ rệt (trong lần đo của bài: 5056 ms so với 265 ms).

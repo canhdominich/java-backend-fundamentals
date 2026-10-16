@@ -11,6 +11,8 @@ public class ConnectionErrors {
         report("Wrong password", good.withPassword("not-the-password"));
         report("Wrong port", good.withUrl(good.url().replace(":3307", ":3999")));
         report("Unknown database", good.withUrl(good.url().replace("/shop", "/no_such_db")));
+        String rootPassword = System.getenv().getOrDefault("DB_ROOT_PASSWORD", "root_pw");
+        report("Unknown database (administrator)", good.withUser("root").withPassword(rootPassword).withUrl(good.url().replace("/shop", "/no_such_db")));
         report("Wrong URL prefix", good.withUrl(good.url().replace("jdbc:mysql:", "jdbc:mysq:")));
     }
 
