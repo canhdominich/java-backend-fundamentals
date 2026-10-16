@@ -39,3 +39,4 @@ Số chương và số bài khớp thứ tự trong khóa học. Mỗi thư mụ
 | 2. JDBC | Transaction và Batch | [02-jdbc/04-transaction-va-batch](02-jdbc/04-transaction-va-batch) |
 | 2. JDBC | DAO và Repository thuần JDBC | [02-jdbc/05-dao-va-repository](02-jdbc/05-dao-va-repository) |
 | 3. Servlet | Giới thiệu Servlet và cách hoạt động | [03-servlet/01-gioi-thieu-servlet](03-servlet/01-gioi-thieu-servlet) |
+| 3. Servlet | Vòng đời của Servlet | [03-servlet/02-vong-doi-servlet](03-servlet/02-vong-doi-servlet) |
