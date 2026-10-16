@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_1.xsd" version="6.1">
+    <display-name>servlet-config-dispatcher-filters</display-name>
+
+    <context-param>
+        <param-name>appName</param-name>
+        <param-value>Course Shop</param-value>
+    </context-param>
+
+    <filter>
+        <filter-name>logging</filter-name>
+        <filter-class>dev.canhdominich.servlet.filters.LoggingFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>encoding</filter-name>
+        <filter-class>dev.canhdominich.servlet.filters.EncodingFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>auth</filter-name>
+        <filter-class>dev.canhdominich.servlet.filters.AuthFilter</filter-class>
+        <init-param>
+            <param-name>token</param-name>
+            <param-value>secret</param-value>
+        </init-param>
+    </filter>
+    <filter>
+        <filter-name>bodyCaching</filter-name>
+        <filter-class>dev.canhdominich.servlet.filters.BodyCachingFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>forwardLogging</filter-name>
+        <filter-class>dev.canhdominich.servlet.filters.ForwardLoggingFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>logging</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>encoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>auth</filter-name>
+        <url-pattern>/secure/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>bodyCaching</filter-name>
+        <url-pattern>/api/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>forwardLogging</filter-name>
+        <url-pattern>/dispatch/target</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+</web-app>
