@@ -16,3 +16,4 @@
 missing variable: [${nothing}] property of a missing variable: [${nothing.name}] empty test: ${empty nothing}
 <c:catch var="problem">bad property: [${products[0].nothing}]</c:catch>
 bad property raised: ${problem.message}
+null compared with 0: [${products[1].stock == 0}] null less than 5: [${products[1].stock < 5}] null plus 1: [${products[1].stock + 1}]

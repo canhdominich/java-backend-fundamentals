@@ -100,7 +100,8 @@ class ComponentBehaviourTest {
         String body = get(fresh(), "/products").body();
         assertThat(body).contains("<td>KB-01</td>").contains("<td>Mouse &lt;b&gt;Pro&lt;/b&gt;</td>").contains("<td>sold out</td>").contains("<td>unknown</td>")
                 .contains("missing variable: []").contains("property of a missing variable: []").contains("empty test: true")
-                .contains("Property [nothing] not found on type [dev.canhdominich.jsp.components.Product]");
+                .contains("Property [nothing] not found on type [dev.canhdominich.jsp.components.Product]")
+                .contains("null compared with 0: [false] null less than 5: [false] null plus 1: [1]");
     }
 
     @Test

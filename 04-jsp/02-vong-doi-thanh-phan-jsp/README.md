@@ -113,6 +113,7 @@ generated includes_jsp.java calls the dynamic header at request time: true
 missing variable: [] property of a missing variable: [] empty test: true
 bad property: [
 bad property raised: Property [nothing] not found on type [dev.canhdominich.jsp.components.Product]
+null compared with 0: [false] null less than 5: [false] null plus 1: [1]
 -- error page
 status 500
 custom error page
