@@ -42,3 +42,4 @@ Số chương và số bài khớp thứ tự trong khóa học. Mỗi thư mụ
 | 3. Servlet | Vòng đời của Servlet | [03-servlet/02-vong-doi-servlet](03-servlet/02-vong-doi-servlet) |
 | 3. Servlet | Request, Response và Session | [03-servlet/03-request-response-session](03-servlet/03-request-response-session) |
 | 3. Servlet | Config, Dispatcher và Filters | [03-servlet/04-config-dispatcher-filters](03-servlet/04-config-dispatcher-filters) |
+| 4. JSP | Giới thiệu và kiến trúc JSP | [04-jsp/01-gioi-thieu-jsp](04-jsp/01-gioi-thieu-jsp) |
