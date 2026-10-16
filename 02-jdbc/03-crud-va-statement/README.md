@@ -91,6 +91,16 @@ useServerPrepStmts=true                          5000 queries in ~3500-4000 ms
 useServerPrepStmts=true&cachePrepStmts=true      5000 queries in ~1500 ms
 ```
 
+Đếm lệnh máy chủ nhận được trong ba chế độ trên (bật `general_log` trước khi chạy `PreparedModes`, mỗi chế độ chạy 5200 lần kể cả khởi động):
+
+```bash
+docker exec jdbc-lab-mysql mysql -uroot -proot_pw -e "SET GLOBAL log_output='TABLE'; TRUNCATE mysql.general_log; SET GLOBAL general_log='ON';"
+mvn -q exec:exec -Dmain.class=dev.canhdominich.jdbc.crud.PreparedModes
+docker exec jdbc-lab-mysql mysql -uroot -proot_pw -e "SET GLOBAL general_log='OFF'; SELECT thread_id, command_type, COUNT(*) n FROM mysql.general_log WHERE CONVERT(argument USING utf8mb4) LIKE '%FROM product WHERE sku%' OR command_type IN ('Prepare','Execute','Close stmt') GROUP BY thread_id, command_type ORDER BY thread_id, command_type; TRUNCATE mysql.general_log;"
+```
+
+Kết quả: chế độ mặc định chỉ có `Query` (5200); `useServerPrepStmts=true` có `Prepare`, `Execute`, `Close stmt` mỗi loại 5200; thêm `cachePrepStmts=true` chỉ còn `Prepare` 1 lần, `Execute` 5200 và không có `Close stmt`. Số liệu thời gian cao hơn bình thường khi bật log.
+
 `AffectedRows`:
 
 ```text
