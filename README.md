@@ -36,3 +36,4 @@ Số chương và số bài khớp thứ tự trong khóa học. Mỗi thư mụ
 | 2. JDBC | Giới thiệu JDBC và JDBC Driver | [02-jdbc/01-gioi-thieu-jdbc](02-jdbc/01-gioi-thieu-jdbc) |
 | 2. JDBC | Kết nối MySQL bằng JDBC | [02-jdbc/02-ket-noi-mysql](02-jdbc/02-ket-noi-mysql) |
 | 2. JDBC | CRUD và các loại Statement | [02-jdbc/03-crud-va-statement](02-jdbc/03-crud-va-statement) |
+| 2. JDBC | Transaction và Batch | [02-jdbc/04-transaction-va-batch](02-jdbc/04-transaction-va-batch) |
