@@ -1,0 +1,2 @@
+<% String sharedTitle = "defined in the static header"; %>
+<header>static header text</header>
