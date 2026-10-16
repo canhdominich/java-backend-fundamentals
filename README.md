@@ -44,3 +44,4 @@ Số chương và số bài khớp thứ tự trong khóa học. Mỗi thư mụ
 | 3. Servlet | Config, Dispatcher và Filters | [03-servlet/04-config-dispatcher-filters](03-servlet/04-config-dispatcher-filters) |
 | 4. JSP | Giới thiệu và kiến trúc JSP | [04-jsp/01-gioi-thieu-jsp](04-jsp/01-gioi-thieu-jsp) |
 | 4. JSP | Vòng đời và thành phần JSP | [04-jsp/02-vong-doi-thanh-phan-jsp](04-jsp/02-vong-doi-thanh-phan-jsp) |
+| 4. JSP | So sánh Servlet và JSP, ứng dụng MVC đăng nhập | [04-jsp/03-servlet-va-jsp-mvc](04-jsp/03-servlet-va-jsp-mvc) |
