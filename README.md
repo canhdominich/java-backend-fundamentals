@@ -37,3 +37,4 @@ Số chương và số bài khớp thứ tự trong khóa học. Mỗi thư mụ
 | 2. JDBC | Kết nối MySQL bằng JDBC | [02-jdbc/02-ket-noi-mysql](02-jdbc/02-ket-noi-mysql) |
 | 2. JDBC | CRUD và các loại Statement | [02-jdbc/03-crud-va-statement](02-jdbc/03-crud-va-statement) |
 | 2. JDBC | Transaction và Batch | [02-jdbc/04-transaction-va-batch](02-jdbc/04-transaction-va-batch) |
+| 2. JDBC | DAO và Repository thuần JDBC | [02-jdbc/05-dao-va-repository](02-jdbc/05-dao-va-repository) |
