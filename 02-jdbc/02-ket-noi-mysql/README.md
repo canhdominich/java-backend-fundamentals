@@ -27,7 +27,11 @@ Bạn sẽ chạy lại các thí nghiệm trong bài để tự thấy kết qu
     ConnectionErrors.java     tái hiện 4 lỗi kết nối thường gặp
     PoolVsDirect.java         so sánh DriverManager và HikariCP
     PoolExhaustion.java       cạn pool và cảnh báo rò rỉ kết nối
-    TimezoneDemo.java         cùng một thời điểm, lưu lệch 7 giờ hay đúng
+    TimezoneDemo.java         cùng một thời điểm, lưu lệch 7 giờ hay đúng, và các tên tùy chọn múi giờ
+    NetworkFailures.java      tên máy sai, cổng đóng, địa chỉ không tới được và giới hạn thời gian chờ
+    UrlOptions.java           mã hóa TLS thực tế ứng với từng tùy chọn URL
+    PublicKeyRetrieval.java   lỗi Public Key Retrieval khi bộ nhớ đệm xác thực còn lạnh
+    MaxConnectionsDemo.java   hạ max_connections xuống 8 rồi mở kết nối cho tới khi bị từ chối
   src/test/java/dev/canhdominich/jdbc/
     ConnectionErrorsTest.java mã lỗi và SQLState của từng tình huống
     PoolBehaviourTest.java    tái dùng kết nối và hết thời gian chờ pool
@@ -61,6 +65,21 @@ mvn -q exec:exec -Dmain.class=dev.canhdominich.jdbc.ConnectionErrors
 mvn -q exec:exec -Dmain.class=dev.canhdominich.jdbc.PoolVsDirect
 mvn -q exec:exec -Dmain.class=dev.canhdominich.jdbc.PoolExhaustion
 mvn -q exec:exec -Dmain.class=dev.canhdominich.jdbc.TimezoneDemo
+mvn -q exec:exec -Dmain.class=dev.canhdominich.jdbc.NetworkFailures
+mvn -q exec:exec -Dmain.class=dev.canhdominich.jdbc.UrlOptions
+mvn -q exec:exec -Dmain.class=dev.canhdominich.jdbc.MaxConnectionsDemo
+```
+
+`PublicKeyRetrieval` chỉ thấy lỗi khi bộ nhớ đệm xác thực của MySQL còn lạnh, tức ngay sau khi khởi động lại MySQL:
+
+```bash
+docker compose restart mysql
+```
+
+Chờ `docker compose ps` báo `healthy` rồi chạy:
+
+```bash
+mvn -q exec:exec -Dmain.class=dev.canhdominich.jdbc.PublicKeyRetrieval
 ```
 
 ## Kết quả mong đợi
@@ -97,6 +116,42 @@ Authenticated as: app@%
 default                  server shows 2026-10-16 10:00:00, epoch 1792144800, offset from truth +7 h
 connectionTimeZone=UTC   server shows 2026-10-16 03:00:00, epoch 1792119600, offset from truth +0 h
 ```
+
+`NetworkFailures`, địa chỉ `10.255.255.1` không có máy nào trả lời, nên kết quả phụ thuộc mạng của bạn: có lần báo `Connect timed out` đúng sau giới hạn đã đặt (khoảng 2006 ms và 1006 ms), có lần báo `Network is unreachable` ngay lập tức (khoảng 30 đến 70 ms).
+
+```text
+Unknown host                                 CommunicationsException SQLState=08S01 root=UnknownHostException: no-such-host.invalid: Temporary failure in name resolution after ~250 ms
+Closed port                                  CommunicationsException SQLState=08S01 root=ConnectException: Connection refused after ~10 ms
+Unroutable address, connectTimeout=2000      CommunicationsException SQLState=08S01 root=SocketTimeoutException: Connect timed out after ~2006 ms
+Unroutable address, loginTimeout=1 second    CommunicationsException SQLState=08S01 root=SocketTimeoutException: Connect timed out after ~1006 ms
+```
+
+`UrlOptions`:
+
+```text
+(no option)          TLS_AES_256_GCM_SHA384
+useSSL=false         no encryption
+sslMode=DISABLED     no encryption
+sslMode=REQUIRED     TLS_AES_256_GCM_SHA384
+sslMode=VERIFY_CA    FAILED CertPathValidatorException
+useSSl=false         TLS_AES_256_GCM_SHA384
+```
+
+`PublicKeyRetrieval` (ngay sau khi khởi động lại MySQL):
+
+```text
+1. sslMode=DISABLED                           : SQLNonTransientConnectionException SQLState=08001 Public Key Retrieval is not allowed
+2. sslMode=DISABLED&allowPublicKeyRetrieval=true: connected
+3. sslMode=DISABLED again                      : connected
+```
+
+`MaxConnectionsDemo` (kết nối quản trị chiếm một chỗ nên bị từ chối ở kết nối thứ tám của ứng dụng):
+
+```text
+opened 7 connections, then SQLNonTransientConnectionException SQLState=08004 errorCode=1040 message=Too many connections
+```
+
+`TimezoneDemo` ghi thêm ba dòng: `serverTimezone=UTC` cũng cho `offset +0 h`, `serverTimezone=Foo/Bar` cho `FAILED ZoneRulesException: Unknown time-zone ID: Foo/Bar`, và `connectionTimeZone=UTC&forceConnectionTimeZoneToSession=true` đổi `session time_zone` từ `SYSTEM` sang `+00:00`.
 
 ## Chạy bộ test
 

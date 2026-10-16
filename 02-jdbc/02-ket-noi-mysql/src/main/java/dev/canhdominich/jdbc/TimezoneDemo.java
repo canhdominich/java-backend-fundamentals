@@ -18,8 +18,18 @@ public class TimezoneDemo {
 
         System.out.println("JVM time zone : " + java.util.TimeZone.getDefault().getID());
         System.out.println("Stored moment : " + MOMENT + " (epoch " + MOMENT.getEpochSecond() + ")");
-        store(config, "default");
-        store(config, "connectionTimeZone=UTC");
+        for (String option : new String[]{"default", "connectionTimeZone=UTC", "serverTimezone=UTC", "serverTimezone=Foo/Bar",
+                "connectionTimeZone=UTC&forceConnectionTimeZoneToSession=true"}) {
+            try {
+                store(config, option);
+            } catch (SQLException e) {
+                Throwable root = e;
+                while (root.getCause() != null) {
+                    root = root.getCause();
+                }
+                System.out.printf("%-24s FAILED %s: %s%n", option, root.getClass().getSimpleName(), root.getMessage());
+            }
+        }
     }
 
     static void store(DbConfig config, String option) throws SQLException {
@@ -32,11 +42,11 @@ public class TimezoneDemo {
                 insert.setTimestamp(1, Timestamp.from(MOMENT));
                 insert.executeUpdate();
             }
-            try (ResultSet rs = statement.executeQuery("SELECT CAST(created_at AS CHAR), UNIX_TIMESTAMP(created_at) FROM tz_demo")) {
+            try (ResultSet rs = statement.executeQuery("SELECT CAST(created_at AS CHAR), UNIX_TIMESTAMP(created_at), @@session.time_zone FROM tz_demo")) {
                 rs.next();
                 long epoch = rs.getLong(2);
-                System.out.printf("%-24s server shows %s, epoch %d, offset from truth %+d h%n",
-                        option, rs.getString(1), epoch, (epoch - MOMENT.getEpochSecond()) / 3600);
+                System.out.printf("%-24s server shows %s, epoch %d, offset from truth %+d h, session time_zone %s%n",
+                        option, rs.getString(1), epoch, (epoch - MOMENT.getEpochSecond()) / 3600, rs.getString(3));
             }
         }
     }
