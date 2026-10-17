@@ -61,3 +61,4 @@ Số chương và số bài khớp thứ tự trong khóa học. Mỗi thư mụ
 | 8. Spring Boot | Cấu hình, starter và annotation | [08-spring-boot/02-cau-hinh-starters-annotations](08-spring-boot/02-cau-hinh-starters-annotations) |
 | 8. Spring Boot | Xây REST API với Spring Boot | [08-spring-boot/03-rest-api](08-spring-boot/03-rest-api) |
 | 8. Spring Boot | Actuator, DevTools và logging | [08-spring-boot/04-actuator-devtools-logging](08-spring-boot/04-actuator-devtools-logging) |
+| 9. Spring Data JPA | Spring Data JPA và JpaRepository | [09-spring-data-jpa/01-jparepository](09-spring-data-jpa/01-jparepository) |
