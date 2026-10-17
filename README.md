@@ -53,3 +53,4 @@ Số chương và số bài khớp thứ tự trong khóa học. Mỗi thư mụ
 | 6. Spring Core | IoC và Dependency Injection | [06-spring-core/01-ioc-va-di](06-spring-core/01-ioc-va-di) |
 | 6. Spring Core | Container và cách cấu hình bean | [06-spring-core/02-container-va-cau-hinh](06-spring-core/02-container-va-cau-hinh) |
 | 6. Spring Core | Dependency Injection và Autowiring | [06-spring-core/03-dependency-injection](06-spring-core/03-dependency-injection) |
+| 6. Spring Core | Vòng đời, scope và SpEL | [06-spring-core/04-vong-doi-scope-spel](06-spring-core/04-vong-doi-scope-spel) |
