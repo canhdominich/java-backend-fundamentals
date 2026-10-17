@@ -1,0 +1,41 @@
+services:
+  inventory:
+    build: ./inventory-service
+    image: micro-inventory:lab
+    environment:
+      SERVER_SHUTDOWN: ${INVENTORY_SHUTDOWN:-graceful}
+    ports:
+      - "18081:8081"
+    mem_limit: 256m
+    healthcheck:
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8081"]
+      interval: 2s
+      timeout: 2s
+      retries: 40
+
+  order:
+    build: ./order-service
+    image: micro-order:lab
+    environment:
+      INVENTORY_URL: http://inventory:8081
+    ports:
+      - "18080:8080"
+    mem_limit: 256m
+    healthcheck:
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8080"]
+      interval: 2s
+      timeout: 2s
+      retries: 40
+    depends_on:
+      inventory:
+        condition: service_healthy
+
+  inventory-simple:
+    build:
+      context: ./inventory-service
+      dockerfile: Dockerfile.simple
+    image: micro-inventory-simple:lab
+    ports:
+      - "18082:8081"
+    mem_limit: 256m
+    profiles: ["compare"]
