@@ -56,3 +56,4 @@ Số chương và số bài khớp thứ tự trong khóa học. Mỗi thư mụ
 | 6. Spring Core | Vòng đời, scope và SpEL | [06-spring-core/04-vong-doi-scope-spel](06-spring-core/04-vong-doi-scope-spel) |
 | 7. Spring MVC | DispatcherServlet và vòng đời một yêu cầu | [07-spring-mvc/01-dispatcherservlet](07-spring-mvc/01-dispatcherservlet) |
 | 7. Spring MVC | Controller, mapping và tham số yêu cầu | [07-spring-mvc/02-controller-va-tham-so](07-spring-mvc/02-controller-va-tham-so) |
+| 7. Spring MVC | View, validation và xử lý lỗi | [07-spring-mvc/03-view-validation-loi](07-spring-mvc/03-view-validation-loi) |
