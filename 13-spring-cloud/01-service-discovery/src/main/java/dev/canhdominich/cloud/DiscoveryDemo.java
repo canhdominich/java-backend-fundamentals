@@ -94,7 +94,7 @@ public class DiscoveryDemo {
         return lines;
     }
 
-    private static String[] catalogArgs(String eureka, String id) {
+    static String[] catalogArgs(String eureka, String id) {
         return new String[] {
             "--eureka.client.service-url.defaultZone=" + eureka,
             "--eureka.instance.instance-id=" + id,
@@ -105,7 +105,7 @@ public class DiscoveryDemo {
         };
     }
 
-    private static Map<String, Integer> calls(int shopPort, int count) {
+    static Map<String, Integer> calls(int shopPort, int count) {
         Map<String, Integer> counts = new TreeMap<>();
         for (int i = 0; i < count; i++) {
             counts.merge(text(shopPort, "/call"), 1, Integer::sum);
@@ -113,7 +113,7 @@ public class DiscoveryDemo {
         return counts;
     }
 
-    private static Node launch(List<Node> nodes, Class<?> main, String name, String... extra) throws Exception {
+    static Node launch(List<Node> nodes, Class<?> main, String name, String... extra) throws Exception {
         int port = freePort();
         List<String> command = new ArrayList<>(List.of(
                 System.getProperty("java.home") + "/bin/java",
@@ -140,13 +140,13 @@ public class DiscoveryDemo {
         return node;
     }
 
-    private static int freePort() throws Exception {
+    static int freePort() throws Exception {
         try (ServerSocket socket = new ServerSocket(0)) {
             return socket.getLocalPort();
         }
     }
 
-    private static boolean waitFor(BooleanSupplier condition, long millis) throws InterruptedException {
+    static boolean waitFor(BooleanSupplier condition, long millis) throws InterruptedException {
         long deadline = System.currentTimeMillis() + millis;
         while (System.currentTimeMillis() < deadline) {
             try {
@@ -160,7 +160,7 @@ public class DiscoveryDemo {
         return false;
     }
 
-    private static String instanceIds(int registryPort) {
+    static String instanceIds(int registryPort) {
         String body = get(registryPort, "/eureka/apps/CATALOG", "application/json");
         List<String> ids = new ArrayList<>();
         Matcher matcher = Pattern.compile("\"instanceId\"\\s*:\\s*\"([^\"]+)\"").matcher(body);
@@ -171,7 +171,7 @@ public class DiscoveryDemo {
         return ids.toString();
     }
 
-    private static String get(int port, String path, String accept) {
+    static String get(int port, String path, String accept) {
         try {
             HttpResponse<String> response = HTTP.send(HttpRequest.newBuilder(URI.create("http://localhost:" + port + path)).header("Accept", accept).GET().build(), HttpResponse.BodyHandlers.ofString());
             return response.body();
@@ -180,11 +180,11 @@ public class DiscoveryDemo {
         }
     }
 
-    private static String text(int port, String path) {
+    static String text(int port, String path) {
         return get(port, path, "text/plain");
     }
 
-    private static int status(int port, String path) {
+    static int status(int port, String path) {
         try {
             return HTTP.send(HttpRequest.newBuilder(URI.create("http://localhost:" + port + path)).GET().build(), HttpResponse.BodyHandlers.discarding()).statusCode();
         } catch (Exception e) {
@@ -192,6 +192,6 @@ public class DiscoveryDemo {
         }
     }
 
-    private record Node(Process process, int port) {
+    record Node(Process process, int port) {
     }
 }

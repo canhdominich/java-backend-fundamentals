@@ -26,6 +26,7 @@ Bạn sẽ tự chạy: một sổ đăng ký Eureka, hai bản của dịch v�
     shop/ShopApplication.java            hai RestClient.Builder: một thường (@Primary) và một @LoadBalanced
     shop/ShopController.java             GET /call gọi http://catalog/whoami, GET /instances đếm bản thấy được
     DiscoveryDemo.java                   mở ba loại tiến trình, đo từng tình huống
+    SelfPreservationDemo.java            đo thời gian sổ đăng ký loại một bản đã sập khi bật và tắt self-preservation
   src/test/java/dev/canhdominich/cloud/
     DiscoveryBehaviourTest.java
 ```
@@ -62,6 +63,22 @@ registry lists only catalog-B at the end: [catalog-B]
 ```
 
 Con số `failed calls` và `last failure` thay đổi giữa các lần chạy (khoảng 30 lời gọi lỗi, lỗi cuối cùng vào giây thứ 7 hoặc 8 sau khi sập); các dòng còn lại phải y hệt.
+
+## Thí nghiệm thêm: self-preservation
+
+```bash
+mvn -q compile exec:exec -Dmain.class=dev.canhdominich.cloud.SelfPreservationDemo
+```
+
+Mất khoảng ba phút. Kết quả (sai lệch một đến hai giây giữa các lần chạy):
+
+```text
+self preservation false, crash 10 s after start: evicted after 4 s
+self preservation true, crash 10 s after start: evicted after 44 s
+self preservation true, crash 90 s after start: evicted after 7 s
+```
+
+Trong lúc self-preservation bật (mặc định), sổ đăng ký chưa loại bản nào trong khoảng một phút đầu sau khi nó khởi động; sau đó cũng loại được trong vài giây.
 
 ## Chạy bộ test
 
