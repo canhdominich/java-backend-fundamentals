@@ -68,3 +68,4 @@ Số chương và số bài khớp thứ tự trong khóa học. Mỗi thư mụ
 | 10. Spring JDBC | RowMapper, tham số có tên và batch | [10-spring-jdbc/02-rowmapper-batch](10-spring-jdbc/02-rowmapper-batch) |
 | 11. Spring Security | Spring Security: kiến trúc và cấu hình mặc định | [11-spring-security/01-kien-truc-mac-dinh](11-spring-security/01-kien-truc-mac-dinh) |
 | 11. Spring Security | Cấu hình bảo mật, mã hóa mật khẩu và vai trò | [11-spring-security/02-cau-hinh-ma-hoa-vai-tro](11-spring-security/02-cau-hinh-ma-hoa-vai-tro) |
+| 11. Spring Security | JWT: xác thực không trạng thái cho API | [11-spring-security/03-jwt](11-spring-security/03-jwt) |
