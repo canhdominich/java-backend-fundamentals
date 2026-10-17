@@ -115,5 +115,14 @@ public final class PersistenceContextDemo {
             System.out.println("-- name = " + reference.getFullName());
             SqlRecorder.print("-- SQL after getFullName()");
         }
+        Student orphan;
+        try (Session session = factory.openSession()) {
+            orphan = session.getReference(Student.class, id);
+        }
+        try {
+            orphan.getFullName();
+        } catch (RuntimeException e) {
+            System.out.println("-- proxy used after its Session closed: " + e.getClass().getSimpleName());
+        }
     }
 }

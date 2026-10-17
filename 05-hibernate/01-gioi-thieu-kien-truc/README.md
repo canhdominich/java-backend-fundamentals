@@ -83,6 +83,7 @@ Hibernate ghi log khởi động ra stderr (phiên bản, dialect, thông tin k�
 -- name = Nguyễn Văn An (đã sửa)
 -- SQL after getFullName()
   select s1_0.id,s1_0.email,s1_0.full_name,s1_0.level from student s1_0 where s1_0.id=?
+-- proxy used after its Session closed: LazyInitializationException
 ```
 
 `IdStrategiesDemo`:
@@ -112,7 +113,7 @@ Dòng `JDBC statements prepared ... : 4` là số lần Hibernate đọc và c�
 mvn test
 ```
 
-Kết quả mong đợi: `Tests run: 7, Failures: 0, Errors: 0`.
+Kết quả mong đợi: `Tests run: 9, Failures: 0, Errors: 0`.
 
 ## Dọn dẹp
 

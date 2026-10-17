@@ -149,6 +149,16 @@ class HibernateIntroTest {
     }
 
     @Test
+    void proxyUsedAfterTheSessionClosedThrowsLazyInitializationException() {
+        long id = newStudent();
+        Student orphan;
+        try (Session session = factory.openSession()) {
+            orphan = session.getReference(Student.class, id);
+        }
+        org.assertj.core.api.Assertions.assertThatThrownBy(orphan::getFullName).isInstanceOf(org.hibernate.LazyInitializationException.class);
+    }
+
+    @Test
     void sequenceIdsAreAllocatedWithoutInsertsAndDynamicUpdateWritesOnlyChangedColumns() {
         try (Session session = factory.openSession()) {
             Transaction tx = session.beginTransaction();
@@ -168,6 +178,17 @@ class HibernateIntroTest {
             session.find(Note.class, note.getId()).setTitle("second");
             tx.commit();
             assertThat(SqlRecorder.statements()).containsExactly("update Note set title=? where id=?");
+        }
+    }
+
+    @Test
+    void sessionIsAJakartaPersistenceEntityManagerAndTheOldSaveMethodsAreGone() {
+        try (Session session = factory.openSession()) {
+            jakarta.persistence.EntityManager entityManager = session;
+            assertThat(entityManager.isOpen()).isTrue();
+            java.util.Set<String> names = java.util.Arrays.stream(Session.class.getMethods()).map(java.lang.reflect.Method::getName).collect(java.util.stream.Collectors.toSet());
+            System.out.println("Session has save: " + names.contains("save") + ", saveOrUpdate: " + names.contains("saveOrUpdate") + ", persist: " + names.contains("persist") + ", merge: " + names.contains("merge"));
+            assertThat(names).contains("persist", "merge", "find", "getReference", "remove");
         }
     }
 }
