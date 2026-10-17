@@ -83,4 +83,4 @@ mvn clean
 |---|---|---|
 | `Incorrect ConfigDataLocationResolver chosen` khi client khởi động | Config server và client cùng classpath nên import `configserver:` không được bật mặc định | Đặt `spring.cloud.config.enabled=true` cho client, như `ConfigDemo` làm |
 | `POST /actuator/refresh` trả 415 | Yêu cầu thiếu `Content-Type` | Gửi `Content-Type: application/json` với thân `{}` |
-| `POST /encrypt` trả 400 | Thiếu `Content-Type: text/plain` hoặc server chưa có `encrypt.key` | Gửi đúng kiểu nội dung và đặt khóa cho server |
+| `POST /encrypt` trả 400 | Thiếu `Content-Type: text/plain` trong yêu cầu | Gửi `Content-Type: text/plain` với thân là giá trị cần mã hóa |
