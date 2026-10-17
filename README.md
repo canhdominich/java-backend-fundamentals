@@ -59,3 +59,4 @@ Số chương và số bài khớp thứ tự trong khóa học. Mỗi thư mụ
 | 7. Spring MVC | View, validation và xử lý lỗi | [07-spring-mvc/03-view-validation-loi](07-spring-mvc/03-view-validation-loi) |
 | 8. Spring Boot | Giới thiệu và kiến trúc Spring Boot | [08-spring-boot/01-gioi-thieu-kien-truc](08-spring-boot/01-gioi-thieu-kien-truc) |
 | 8. Spring Boot | Cấu hình, starter và annotation | [08-spring-boot/02-cau-hinh-starters-annotations](08-spring-boot/02-cau-hinh-starters-annotations) |
+| 8. Spring Boot | Xây REST API với Spring Boot | [08-spring-boot/03-rest-api](08-spring-boot/03-rest-api) |
