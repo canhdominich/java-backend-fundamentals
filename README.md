@@ -52,3 +52,4 @@ Số chương và số bài khớp thứ tự trong khóa học. Mỗi thư mụ
 | 5. Hibernate | Criteria, bộ nhớ đệm và kế thừa | [05-hibernate/05-criteria-cache-ke-thua](05-hibernate/05-criteria-cache-ke-thua) |
 | 6. Spring Core | IoC và Dependency Injection | [06-spring-core/01-ioc-va-di](06-spring-core/01-ioc-va-di) |
 | 6. Spring Core | Container và cách cấu hình bean | [06-spring-core/02-container-va-cau-hinh](06-spring-core/02-container-va-cau-hinh) |
+| 6. Spring Core | Dependency Injection và Autowiring | [06-spring-core/03-dependency-injection](06-spring-core/03-dependency-injection) |
