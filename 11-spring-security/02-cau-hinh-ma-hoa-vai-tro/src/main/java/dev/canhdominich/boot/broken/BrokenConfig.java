@@ -14,7 +14,7 @@ public class BrokenConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(requests -> requests
                 .anyRequest().authenticated()
-                .requestMatchers("/public/**").permitAll());
+                .requestMatchers("/public/{*path}").permitAll());
         return http.build();
     }
 }

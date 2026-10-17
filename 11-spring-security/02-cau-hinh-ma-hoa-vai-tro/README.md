@@ -60,11 +60,11 @@ explicit {noop} prefix still matches: true
 stored without a prefix -> IllegalArgumentException: Given that there is no default password encoder configured, each password must have a password encoding prefix. Please either prefix this password with '{noop}' or set a default password encoder in `DelegatingPasswordEncoder`.
 -- cost of one BCrypt hash
 strength 4: 1 ms
-strength 10: 92 ms
-strength 12: 369 ms
-strength 14: 1550 ms
+strength 10: 101 ms
+strength 12: 376 ms
+strength 14: 1472 ms
 -- login timing: unknown user against known user with a wrong password
-unknown user: 102 ms, known user with a wrong password: 98 ms, similar: true
+unknown user: 98 ms, known user with a wrong password: 96 ms, similar: true
 -- a misplaced rule is rejected at startup
 startup failed: IllegalStateException: Can't configure requestMatchers after anyRequest
 ```
