@@ -83,4 +83,4 @@ mvn clean
 | Triệu chứng | Nguyên nhân | Cách xử lý |
 |---|---|---|
 | `Invalid URI syntax: Illegal character in path at index 1: ${catalog.url}` khi một backend khởi động | Backend đọc cùng `application.yml` của gateway | Khởi động backend với `spring.config.name=backend` như `GatewayDemo` làm |
-| Mọi đường dẫn trả 404 | Không route nào khớp, hoặc dùng nhầm starter reactive | Kiểm tra tiền tố thuộc tính `spring.cloud.gateway.server.webmvc.routes` và starter `gateway-server-webmvc` |
+| Mọi đường dẫn trả 404 | Không route nào khớp đường dẫn (thí nghiệm `/nothing` cho đúng kết quả này) | Kiểm tra `Path=` của từng route và tiền tố thuộc tính `spring.cloud.gateway.server.webmvc.routes` |
