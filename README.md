@@ -77,3 +77,4 @@ Số chương và số bài khớp thứ tự trong khóa học. Mỗi thư mụ
 | 13. Spring Cloud | Config Server và cấu hình tập trung | [13-spring-cloud/04-config-server](13-spring-cloud/04-config-server) |
 | 13. Spring Cloud | Distributed tracing với Micrometer Tracing | [13-spring-cloud/05-distributed-tracing](13-spring-cloud/05-distributed-tracing) |
 | 14. Microservices | Monolith và microservices: đo cái giá của việc tách | [14-microservices/01-monolith-va-microservices](14-microservices/01-monolith-va-microservices) |
+| 14. Microservices | Nhất quán giữa các dịch vụ: bù trừ và idempotency | [14-microservices/02-saga-va-idempotency](14-microservices/02-saga-va-idempotency) |
