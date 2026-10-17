@@ -55,7 +55,7 @@ Sửa `.env` trước khi dùng thật: `DB_PASSWORD`, `DB_ROOT_PASSWORD`, `JWT_
 |---|---|---|
 | `DB_URL`, `DB_USER`, `DB_PASSWORD` | Kết nối MySQL | `jdbc:mysql://localhost:3306/shop`, `shop`, `shop_pw` |
 | `JWT_SECRET` | Khóa ký HS256, tối thiểu 32 byte; thiếu hoặc ngắn thì ứng dụng không khởi động | không có |
-| `JWT_TTL` | Thời hạn token (ISO-8601) | `PT1H` |
+| `JWT_TTL` | Thời hạn token (ISO-8601); hiệu lực thực tế dài hơn 60 giây do dung sai đồng hồ | `PT1H` |
 | `ADMIN_EMAIL`, `ADMIN_PASSWORD` | Tạo tài khoản quản trị lúc khởi động nếu chưa có | trống (không tạo) |
 
 ## API tổng quan
@@ -104,7 +104,7 @@ shop-api/
     application.yml
     db/migration/V1__schema.sql
     db/dev/V100__demo_products.sql
-  src/test/java/dev/canhdominich/shop/   32 test
+  src/test/java/dev/canhdominich/shop/   34 test
 ```
 
 ## Kiểm thử
@@ -113,7 +113,7 @@ shop-api/
 mvn verify
 ```
 
-Cần Docker vì mọi test tích hợp chạy trên MySQL 8.4 thật bằng Testcontainers. Bộ test gồm 32 test: luồng nghiệp vụ, quy tắc bảo mật, kiểm tra dữ liệu và định dạng lỗi, idempotency, đồng thời (20 người mua một mặt hàng còn 10), và repository trên cơ sở dữ liệu thật.
+Cần Docker vì mọi test tích hợp chạy trên MySQL 8.4 thật bằng Testcontainers. Bộ test gồm 34 test: luồng nghiệp vụ, quy tắc bảo mật, kiểm tra dữ liệu và định dạng lỗi, idempotency, đồng thời (20 người mua một mặt hàng còn 10), và repository trên cơ sở dữ liệu thật.
 
 ## Lỗi thường gặp khi chạy lab
 
@@ -136,7 +136,7 @@ Cần Docker vì mọi test tích hợp chạy trên MySQL 8.4 thật bằng Tes
 
 ## Hạn chế đã biết
 
-* Token không thu hồi được trước hạn (không có danh sách thu hồi hay refresh token).
+* Token không thu hồi được trước hạn (không có danh sách thu hồi hay refresh token); và thời hạn hiệu lực thực tế là `JWT_TTL` cộng khoảng lệch đồng hồ mặc định 60 giây của Spring Security.
 * Chưa có thanh toán, vận chuyển, và trạng thái đơn chỉ gồm `CREATED` và `CANCELLED`.
 * Chưa giới hạn tốc độ gọi API và chưa có HTTPS: đặt sau một reverse proxy khi triển khai.
 * CI chưa được chạy trên GitHub trong bản này; tệp `ci.yml` là mẫu.

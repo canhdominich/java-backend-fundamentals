@@ -63,6 +63,16 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.badRequest().body(problem);
     }
 
+    @Override
+    protected ResponseEntity<Object> handleExceptionInternal(Exception e, Object body, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+        ResponseEntity<Object> response = super.handleExceptionInternal(e, body, headers, status, request);
+        if (response != null && response.getBody() instanceof ProblemDetail problem
+                && (problem.getProperties() == null || !problem.getProperties().containsKey("code"))) {
+            problem.setProperty("code", HttpStatus.valueOf(status.value()).name());
+        }
+        return response;
+    }
+
     private static ProblemDetail problem(HttpStatus status, String title, String detail, String code) {
         ProblemDetail problem = ProblemDetail.forStatusAndDetail(status, detail);
         problem.setTitle(title);

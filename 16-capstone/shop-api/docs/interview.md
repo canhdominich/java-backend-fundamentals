@@ -42,13 +42,13 @@ Khóa gắn với người dùng; `(user_id, idempotency_key)` là ràng buộc 
 Không cần kho phiên chung nên dễ mở rộng ngang; đổi lại token không thu hồi được trước khi hết hạn (dự án nêu rõ hạn chế này). Có thể giảm thời hạn và thêm refresh token.
 
 **12. Token bị sửa hoặc hết hạn thì sao?**
-Cả hai nhận `401` dạng `application/problem+json` kèm `WWW-Authenticate`; test dùng một token hợp lệ về chữ ký nhưng đã hết hạn và một token bị đổi vài ký tự cuối.
+Hết hạn không chính xác tại thời điểm `exp`: Spring chấp nhận lệch đồng hồ 60 giây; đo với `JWT_TTL=PT2S`, token vẫn dùng được sau 30 giây và bị từ chối sau 62 giây. Token bị sửa hoặc hết hạn rõ ràng nhận `401` dạng `application/problem+json` kèm `WWW-Authenticate`; test dùng một token hợp lệ về chữ ký nhưng đã hết hạn và một token bị đổi vài ký tự cuối.
 
 **13. Vì sao đọc đơn của người khác trả `404` chứ không phải `403`?**
 Để không tiết lộ đơn đó tồn tại. Quản trị viên đọc được mọi đơn.
 
 **14. Vì sao email không tồn tại và mật khẩu sai trả đúng cùng một phản hồi?**
-Để không cho kẻ tấn công dò tài khoản nào tồn tại; test so sánh hai phản hồi và chúng giống hệt.
+Để không cho kẻ tấn công dò tài khoản nào tồn tại; test so sánh hai thân phản hồi và chúng giống hệt. Nhưng thân giống nhau chưa đủ: lúc đầu đăng nhập với email không tồn tại mất khoảng 23 ms còn với email có thật mất khoảng 111 ms (chi phí băm BCrypt), tức thời gian vẫn lộ tài khoản có tồn tại. Cách sửa: luôn so mật khẩu với một băm giả khi không tìm thấy người dùng; sau sửa cả ba trường hợp (đúng, sai mật khẩu, không tồn tại) mất khoảng 119 đến 124 ms.
 
 **15. Điều gì xảy ra nếu `JWT_SECRET` ngắn?**
 Ứng dụng không khởi động (`app.jwt.secret ... must be at least 32 bytes long`). Thà dừng lúc khởi động còn hơn chạy với khóa yếu.

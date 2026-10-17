@@ -43,6 +43,20 @@ class ValidationAndErrorsTest {
     }
 
     @Test
+    void errorsRaisedByTheFrameworkCarryACodeToo() throws Exception {
+        String admin = api.adminToken();
+        mvc.perform(post("/api/products").header("Authorization", "Bearer " + admin).contentType(MediaType.APPLICATION_JSON).content("{\"sku\":\"BROKEN\""))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.code").value("BAD_REQUEST"));
+        mvc.perform(post("/api/products").header("Authorization", "Bearer " + admin).contentType(MediaType.TEXT_PLAIN).content("x"))
+                .andExpect(status().isUnsupportedMediaType())
+                .andExpect(jsonPath("$.code").value("UNSUPPORTED_MEDIA_TYPE"));
+        mvc.perform(get("/api/products/abc"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.code").value("BAD_REQUEST"));
+    }
+
+    @Test
     void aDuplicateSkuIsAConflict() throws Exception {
         String admin = api.adminToken();
         api.createProduct(admin, "DUP-1", 100, 1);
