@@ -1,0 +1,33 @@
+spring:
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          routes:
+            - id: catalog
+              uri: ${catalog.url}
+              predicates:
+                - Path=/api/catalog/{*path}
+              filters:
+                - StripPrefix=2
+                - AddRequestHeader=X-Gateway, shop-edge
+                - AddResponseHeader=X-Served-By, gateway
+            - id: orders
+              uri: ${order.url}
+              predicates:
+                - Path=/api/orders/{*path}
+              filters:
+                - RewritePath=/api/orders/(?<rest>.*), /orders/$\{rest}
+            - id: catalog-balanced
+              uri: lb://catalog-pool
+              predicates:
+                - Path=/lb/catalog/{*path}
+              filters:
+                - StripPrefix=2
+    discovery:
+      client:
+        simple:
+          instances:
+            catalog-pool:
+              - uri: ${catalog.url}
+              - uri: ${catalog2.url}
