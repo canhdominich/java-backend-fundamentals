@@ -80,3 +80,4 @@ Số chương và số bài khớp thứ tự trong khóa học. Mỗi thư mụ
 | 14. Microservices | Nhất quán giữa các dịch vụ: bù trừ và idempotency | [14-microservices/02-saga-va-idempotency](14-microservices/02-saga-va-idempotency) |
 | 14. Microservices | Đóng gói và chạy microservices bằng Docker Compose | [14-microservices/03-docker-compose](14-microservices/03-docker-compose) |
 | 15. JUnit và kiểm thử | JUnit cơ bản: vòng đời, kết quả và thứ tự | [15-junit/01-junit-co-ban](15-junit/01-junit-co-ban) |
+| 15. JUnit và kiểm thử | Assertions, kiểm thử tham số hóa và TDD | [15-junit/02-assertions-parameterized-tdd](15-junit/02-assertions-parameterized-tdd) |
