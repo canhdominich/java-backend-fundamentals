@@ -65,3 +65,4 @@ Số chương và số bài khớp thứ tự trong khóa học. Mỗi thư mụ
 | 9. Spring Data JPA | Truy vấn, phân trang và chiếu dữ liệu | [09-spring-data-jpa/02-truy-van-phan-trang](09-spring-data-jpa/02-truy-van-phan-trang) |
 | 9. Spring Data JPA | Giao dịch, quan hệ và N+1 với Spring Data JPA | [09-spring-data-jpa/03-giao-dich-quan-he-n-mot](09-spring-data-jpa/03-giao-dich-quan-he-n-mot) |
 | 10. Spring JDBC | Spring JDBC và JdbcTemplate | [10-spring-jdbc/01-jdbctemplate](10-spring-jdbc/01-jdbctemplate) |
+| 10. Spring JDBC | RowMapper, tham số có tên và batch | [10-spring-jdbc/02-rowmapper-batch](10-spring-jdbc/02-rowmapper-batch) |
