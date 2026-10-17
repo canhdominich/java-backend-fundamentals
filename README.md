@@ -33,6 +33,8 @@ Số chương và số bài khớp thứ tự trong khóa học. Mỗi thư mụ
 
 | Chương | Bài | Thư mục |
 |---|---|---|
+| 1. Giới thiệu | Kiểm tra môi trường học | [01-nhap-mon/01-kiem-tra-moi-truong](01-nhap-mon/01-kiem-tra-moi-truong) |
+| 1. Giới thiệu | Từ socket tới servlet: Core Java cho bạn gì, Advanced Java thêm gì | [01-nhap-mon/02-tu-socket-den-servlet](01-nhap-mon/02-tu-socket-den-servlet) |
 | 2. JDBC | Giới thiệu JDBC và JDBC Driver | [02-jdbc/01-gioi-thieu-jdbc](02-jdbc/01-gioi-thieu-jdbc) |
 | 2. JDBC | Kết nối MySQL bằng JDBC | [02-jdbc/02-ket-noi-mysql](02-jdbc/02-ket-noi-mysql) |
 | 2. JDBC | CRUD và các loại Statement | [02-jdbc/03-crud-va-statement](02-jdbc/03-crud-va-statement) |
