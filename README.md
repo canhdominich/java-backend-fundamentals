@@ -49,3 +49,4 @@ Số chương và số bài khớp thứ tự trong khóa học. Mỗi thư mụ
 | 5. Hibernate | Cấu hình và CRUD với Hibernate | [05-hibernate/02-cau-hinh-va-crud](05-hibernate/02-cau-hinh-va-crud) |
 | 5. Hibernate | Annotations, Mapping và HQL | [05-hibernate/03-annotation-mapping-hql](05-hibernate/03-annotation-mapping-hql) |
 | 5. Hibernate | Hiệu năng Hibernate và khóa dữ liệu | [05-hibernate/04-hieu-nang-va-lock](05-hibernate/04-hieu-nang-va-lock) |
+| 5. Hibernate | Criteria, bộ nhớ đệm và kế thừa | [05-hibernate/05-criteria-cache-ke-thua](05-hibernate/05-criteria-cache-ke-thua) |
