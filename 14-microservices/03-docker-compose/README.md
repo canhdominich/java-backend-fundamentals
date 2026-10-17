@@ -37,7 +37,7 @@ Bạn sẽ tự chạy: hai dịch vụ `inventory-service` và `order-service` 
 ## Chạy thí nghiệm
 
 ```bash
-./demo.sh
+bash demo.sh
 ```
 
 Lần đầu Docker kéo image `eclipse-temurin:17-jre` (khoảng 270 MB) và script mất vài phút; các lần sau nhanh hơn. Script sửa tạm một dòng của `InventoryController` để đo việc build lại, rồi khôi phục tệp.
