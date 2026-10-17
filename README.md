@@ -71,3 +71,4 @@ Số chương và số bài khớp thứ tự trong khóa học. Mỗi thư mụ
 | 11. Spring Security | JWT: xác thực không trạng thái cho API | [11-spring-security/03-jwt](11-spring-security/03-jwt) |
 | 12. AOP | AOP trong Spring: aspect và proxy | [12-aop/01-aop-proxy](12-aop/01-aop-proxy) |
 | 12. AOP | Các loại advice và quản lý giao dịch | [12-aop/02-advice-va-giao-dich](12-aop/02-advice-va-giao-dich) |
+| 13. Spring Cloud | Service discovery với Eureka và chia tải phía client | [13-spring-cloud/01-service-discovery](13-spring-cloud/01-service-discovery) |
