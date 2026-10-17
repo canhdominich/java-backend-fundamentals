@@ -102,4 +102,4 @@ mvn clean
 | Triệu chứng | Nguyên nhân | Cách xử lý |
 |---|---|---|
 | `Address already in use` ở cổng 8080 | Có ứng dụng khác dùng cổng 8080 | `PORT=9090 mvn -q compile exec:exec` |
-| Mọi đường dẫn đều 404 dù controller đúng | Thiếu `Tomcat.addContext` hoặc DispatcherServlet chưa được ánh xạ vào `/` | Dùng đúng `EmbeddedServer` của bài; không dùng `addWebapp` vì nó cài servlet mặc định ghi đè ánh xạ `/` |
+| Mọi đường dẫn đều 404 dù controller đúng | Thiếu `Tomcat.addContext` hoặc DispatcherServlet chưa được ánh xạ vào `/` | Dùng đúng `EmbeddedServer` của bài (`Tomcat.addContext`); khi tác giả thử `addWebapp` với cùng cách đăng ký, mọi đường dẫn đều trả 404 |
