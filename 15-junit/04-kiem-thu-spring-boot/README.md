@@ -84,4 +84,4 @@ mvn clean
 |---|---|---|
 | `Surefire is going to kill self fork JVM` sau khi test chạy xong | Testcontainers dọn container chậm khi JVM thoát | Bỏ qua nếu cuối vẫn `BUILD SUCCESS`; thông báo này xuất hiện sau khi mọi test đã chạy |
 | `ProductMysqlTest` lỗi kết nối Docker | Docker Engine chưa chạy hoặc không có quyền | Chạy Docker và thử `docker ps`; hoặc chạy các test khác bằng `-Dtest=` bỏ qua lớp này |
-| Không thấy `@WebMvcTest` hay `@MockitoBean` trong IDE | Spring Boot 4 đổi tên gói của các annotation test | Dùng gói `org.springframework.boot.webmvc.test.autoconfigure` cho `@WebMvcTest` và `org.springframework.test.context.bean.override.mockito` cho `@MockitoBean` |
+| Không thấy `@WebMvcTest` hay `@MockitoBean` trong IDE | Các annotation test nằm trong gói khác với các tài liệu cũ | Dùng gói `org.springframework.boot.webmvc.test.autoconfigure` cho `@WebMvcTest` và `org.springframework.test.context.bean.override.mockito` cho `@MockitoBean` |
