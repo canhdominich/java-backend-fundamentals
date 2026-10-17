@@ -57,7 +57,7 @@ public class ValueDemo {
     public static String run() {
         try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SettingsConfig.class)) {
             Settings settings = context.getBean(Settings.class);
-            String line = "name=" + settings.name + ", owner=" + settings.owner + ", maxSize=" + settings.maxSize + " (not in the file, default used)";
+            String line = "name=" + settings.name + ", owner=" + settings.owner + ", maxSize=" + settings.maxSize;
             System.out.println(line);
             return line;
         }

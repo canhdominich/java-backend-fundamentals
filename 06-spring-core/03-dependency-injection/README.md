@@ -79,7 +79,7 @@ Map<String, PaymentService> keys: [paypal, stripe]
 `ValueDemo`:
 
 ```text
-name=Course Platform, owner=Carnell, maxSize=100 (not in the file, default used)
+name=Course Platform, owner=Carnell, maxSize=100
 placeholder without a value and without a default: context started, field = "${app.missing}"
 with PropertySourcesPlaceholderConfigurer: PlaceholderResolutionException: Could not resolve placeholder 'app.missing' in value "${app.missing}"
 ```

@@ -41,7 +41,7 @@ class DependencyInjectionTest {
 
     @Test
     void valuePlaceholdersAreLenientUntilAStrictConfigurerIsRegistered() {
-        assertThat(ValueDemo.run()).isEqualTo("name=Course Platform, owner=Carnell, maxSize=100 (not in the file, default used)");
+        assertThat(ValueDemo.run()).isEqualTo("name=Course Platform, owner=Carnell, maxSize=100");
         assertThat(ValueDemo.missing()).isEqualTo("${app.missing}");
         assertThat(ValueDemo.strict()).startsWith("PlaceholderResolutionException: Could not resolve placeholder 'app.missing'");
     }
