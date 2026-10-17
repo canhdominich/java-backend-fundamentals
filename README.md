@@ -75,3 +75,4 @@ Số chương và số bài khớp thứ tự trong khóa học. Mỗi thư mụ
 | 13. Spring Cloud | OpenFeign và circuit breaker | [13-spring-cloud/02-openfeign-va-circuit-breaker](13-spring-cloud/02-openfeign-va-circuit-breaker) |
 | 13. Spring Cloud | API Gateway với Spring Cloud Gateway | [13-spring-cloud/03-api-gateway](13-spring-cloud/03-api-gateway) |
 | 13. Spring Cloud | Config Server và cấu hình tập trung | [13-spring-cloud/04-config-server](13-spring-cloud/04-config-server) |
+| 13. Spring Cloud | Distributed tracing với Micrometer Tracing | [13-spring-cloud/05-distributed-tracing](13-spring-cloud/05-distributed-tracing) |
