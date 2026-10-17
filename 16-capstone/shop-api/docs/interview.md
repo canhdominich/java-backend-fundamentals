@@ -20,7 +20,7 @@ Giá sản phẩm đổi theo thời gian; đơn đã đặt phải giữ giá l
 Lược đồ có lịch sử và kiểm soát phiên bản, giống mã. `validate` làm ứng dụng không khởi động nếu thực thể và bảng lệch nhau; test `theMigrationsMatchTheEntities` chạy trên MySQL thật bắt điều này sớm.
 
 **6. Thứ tự xử lý các dòng trong một đơn có ý nghĩa gì?**
-Xử lý theo `productId` tăng dần để hai đơn cùng chạm nhiều sản phẩm khóa các hàng theo cùng một thứ tự, tránh khóa chết.
+Xử lý theo `productId` tăng dần để hai đơn cùng chạm nhiều sản phẩm khóa các hàng theo cùng một thứ tự. Đo với 40 yêu cầu đồng thời, một nửa liệt kê hai sản phẩm theo thứ tự ngược lại: có sắp xếp cho 40 đơn thành công và 0 lỗi máy chủ; khi bỏ sắp xếp chỉ 20 đơn thành công và 20 yêu cầu bị hủy vì khóa chết. Trong sản xuất nên thêm thử lại cho lỗi khóa chết (dự án chưa làm).
 
 ## Giao dịch và đồng thời
 
@@ -65,7 +65,7 @@ Tránh truy vấn N+1 và phản hồi lớn. Chi tiết đơn dùng `@EntityGra
 Một nhóm luồng cùng chờ một `CountDownLatch` rồi cùng gửi yêu cầu qua `MockMvc` vào MySQL thật; kết quả được khẳng định trên cả mã trạng thái, tồn kho và tổng số lượng đã bán trong `order_lines`.
 
 **19. Vì sao test chạy trên MySQL thật bằng Testcontainers thay vì H2?**
-Hành vi khác nhau (ràng buộc `CHECK`, khóa hàng, so khớp chữ hoa chữ thường). Test đồng thời và test ràng buộc chỉ có ý nghĩa trên cơ sở dữ liệu giống sản xuất. Cái giá: cần Docker và bộ test mất khoảng 195 giây.
+Hành vi khác nhau (ràng buộc `CHECK`, khóa hàng, so khớp chữ hoa chữ thường). Test đồng thời và test ràng buộc chỉ có ý nghĩa trên cơ sở dữ liệu giống sản xuất. Cái giá: cần Docker và bộ test mất khoảng 113 đến 195 giây.
 
 **20. Bạn đóng gói và vận hành thế nào?**
 Image nhiều tầng (371 MB, chạy bằng người dùng không phải root), Compose với healthcheck, giới hạn bộ nhớ 512 MiB, `server.shutdown=graceful`, bí mật qua biến môi trường. Khởi động lại dịch vụ API mất khoảng 35 giây tới khi sẵn sàng; sao lưu bằng `mysqldump` và đã tập khôi phục vào một cơ sở dữ liệu thử.

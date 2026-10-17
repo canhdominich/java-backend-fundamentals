@@ -6,7 +6,7 @@ Hướng dẫn này dùng Docker Compose trên một máy Linux. Các lệnh và
 
 * Cài Docker Engine và Docker Compose plugin.
 * Mở cổng cho reverse proxy (80 và 443) và **không** mở cổng MySQL ra ngoài. Trong `docker-compose.yml` MySQL không có `ports`, nên chỉ dịch vụ `api` trong mạng của Compose truy cập được.
-* Ít nhất 1 GB bộ nhớ trống: đo được `api` dùng khoảng 329 MiB (giới hạn 512 MiB) và `mysql` khoảng 445 MiB.
+* Ít nhất 1 GB bộ nhớ trống: đo được `api` dùng khoảng 330 đến 360 MiB (giới hạn 512 MiB) và `mysql` khoảng 445 đến 477 MiB.
 
 ## 2. Cấu hình bí mật
 

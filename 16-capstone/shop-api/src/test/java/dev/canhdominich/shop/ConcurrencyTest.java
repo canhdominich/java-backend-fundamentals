@@ -111,6 +111,28 @@ class ConcurrencyTest {
     }
 
     @Test
+    void ordersThatListTheSameProductsInOppositeOrderNeverDeadlock() throws Exception {
+        String admin = api.adminToken();
+        long first = api.createProduct(admin, "LOCK-A", 100_000, 500);
+        long second = api.createProduct(admin, "LOCK-B", 100_000, 500);
+        String customer = api.registerAndLogin(api.uniqueEmail());
+        AtomicInteger next = new AtomicInteger();
+        List<Integer> statuses = runTogether(40, () -> {
+            boolean forward = next.getAndIncrement() % 2 == 0;
+            long one = forward ? first : second;
+            long two = forward ? second : first;
+            String body = "{\"lines\":[{\"productId\":" + one + ",\"quantity\":1},{\"productId\":" + two + ",\"quantity\":1}]}";
+            return mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post("/api/orders").header("Authorization", "Bearer " + customer)
+                    .contentType(org.springframework.http.MediaType.APPLICATION_JSON).content(body)).andReturn().getResponse().getStatus();
+        });
+
+        REPORT.add("4 opposite line order, 40 requests: " + statuses.stream().filter(status -> status == 201).count() + " created, " + statuses.stream().filter(status -> status >= 500).count() + " server errors");
+        assertThat(statuses).allMatch(status -> status == 201);
+        assertThat(api.stockOf(first)).isEqualTo(460);
+        assertThat(api.stockOf(second)).isEqualTo(460);
+    }
+
+    @Test
     void twoSimultaneousRequestsWithTheSameKeyCreateOneOrder() throws Exception {
         String admin = api.adminToken();
         long productId = api.createProduct(admin, "RACE-3", 100_000, 5);

@@ -104,7 +104,7 @@ shop-api/
     application.yml
     db/migration/V1__schema.sql
     db/dev/V100__demo_products.sql
-  src/test/java/dev/canhdominich/shop/   34 test
+  src/test/java/dev/canhdominich/shop/   35 test
 ```
 
 ## Kiểm thử
@@ -113,7 +113,7 @@ shop-api/
 mvn verify
 ```
 
-Cần Docker vì mọi test tích hợp chạy trên MySQL 8.4 thật bằng Testcontainers. Bộ test gồm 34 test: luồng nghiệp vụ, quy tắc bảo mật, kiểm tra dữ liệu và định dạng lỗi, idempotency, đồng thời (20 người mua một mặt hàng còn 10), và repository trên cơ sở dữ liệu thật.
+Cần Docker vì mọi test tích hợp chạy trên MySQL 8.4 thật bằng Testcontainers. Bộ test gồm 35 test: luồng nghiệp vụ, quy tắc bảo mật, kiểm tra dữ liệu và định dạng lỗi, idempotency, đồng thời (20 người mua một mặt hàng còn 10), và repository trên cơ sở dữ liệu thật.
 
 ## Lỗi thường gặp khi chạy lab
 
