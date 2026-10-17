@@ -85,3 +85,4 @@ Số chương và số bài khớp thứ tự trong khóa học. Mỗi thư mụ
 | 15. JUnit và kiểm thử | Assertions, kiểm thử tham số hóa và TDD | [15-junit/02-assertions-parameterized-tdd](15-junit/02-assertions-parameterized-tdd) |
 | 15. JUnit và kiểm thử | Mockito: mock, stub, verify và những chỗ mock đánh lừa bạn | [15-junit/03-mockito](15-junit/03-mockito) |
 | 15. JUnit và kiểm thử | Kiểm thử ứng dụng Spring Boot | [15-junit/04-kiem-thu-spring-boot](15-junit/04-kiem-thu-spring-boot) |
+| 16. Capstone Project | Shop API | [16-capstone/shop-api](16-capstone/shop-api) |
