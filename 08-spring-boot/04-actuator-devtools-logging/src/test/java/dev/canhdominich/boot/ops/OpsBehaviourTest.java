@@ -43,7 +43,7 @@ class OpsBehaviourTest {
     @Test
     void envValuesAreMaskedUnlessYouAskToShowThemAndThenEvenPasswordsAreShown() {
         assertThat(lines.stream().filter(l -> l.startsWith("env app.")).toList()).hasSize(4);
-        assertThat(lines.stream().filter(l -> l.startsWith("env app.")).toList().subList(0, 2)).allMatch(l -> l.endsWith("\"value\":\"******\"}"));
+        assertThat(lines.stream().filter(l -> l.startsWith("env app.")).toList().subList(0, 2)).allMatch(l -> l.endsWith("\"value\":\"[masked]\"}"));
         assertThat(lines).contains("env app.name -> \"value\":\"Course Platform\"", "env app.password -> \"value\":\"hunter2\"");
     }
 

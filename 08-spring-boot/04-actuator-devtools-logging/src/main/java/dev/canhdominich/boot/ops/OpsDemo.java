@@ -95,7 +95,7 @@ public class OpsDemo {
 
     private static String first(String text, String regex) {
         Matcher matcher = Pattern.compile(regex).matcher(text);
-        return matcher.find() ? matcher.group() : "(no match)";
+        return matcher.find() ? matcher.group().replace("*".repeat(6), "[masked]") : "(no match)";
     }
 
     private static String structured() throws Exception {

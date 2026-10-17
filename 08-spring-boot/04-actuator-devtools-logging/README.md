@@ -60,8 +60,8 @@ GET /actuator/health -> 200 components [diskSpace, livenessState, ping, queue, r
 queue component: "queue":{"details":{"depth":0,"limit":1000},"status":"UP"}
 GET /actuator/metrics/orders.created after 3 orders -> "value":3.0
 jvm.memory.used is a known meter: true
-env app.name -> "property":{"source":"Config resource 'class path resource [application.properties]' via location 'optional:classpath:/'","value":"******"}
-env app.password -> "property":{"source":"Config resource 'class path resource [application.properties]' via location 'optional:classpath:/'","value":"******"}
+env app.name -> "property":{"source":"Config resource 'class path resource [application.properties]' via location 'optional:classpath:/'","value":"[masked]"}
+env app.password -> "property":{"source":"Config resource 'class path resource [application.properties]' via location 'optional:classpath:/'","value":"[masked]"}
 queue depth 5000 -> GET /actuator/health 503 "queue":{"details":{"depth":5000,"limit":1000},"status":"DOWN"}
 -- env values with show-values=ALWAYS
 env app.name -> "value":"Course Platform"
