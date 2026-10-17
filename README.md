@@ -47,3 +47,4 @@ Số chương và số bài khớp thứ tự trong khóa học. Mỗi thư mụ
 | 4. JSP | So sánh Servlet và JSP, ứng dụng MVC đăng nhập | [04-jsp/03-servlet-va-jsp-mvc](04-jsp/03-servlet-va-jsp-mvc) |
 | 5. Hibernate | Giới thiệu và kiến trúc Hibernate | [05-hibernate/01-gioi-thieu-kien-truc](05-hibernate/01-gioi-thieu-kien-truc) |
 | 5. Hibernate | Cấu hình và CRUD với Hibernate | [05-hibernate/02-cau-hinh-va-crud](05-hibernate/02-cau-hinh-va-crud) |
+| 5. Hibernate | Annotations, Mapping và HQL | [05-hibernate/03-annotation-mapping-hql](05-hibernate/03-annotation-mapping-hql) |
