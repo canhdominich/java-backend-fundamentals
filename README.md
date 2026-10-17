@@ -57,3 +57,4 @@ Số chương và số bài khớp thứ tự trong khóa học. Mỗi thư mụ
 | 7. Spring MVC | DispatcherServlet và vòng đời một yêu cầu | [07-spring-mvc/01-dispatcherservlet](07-spring-mvc/01-dispatcherservlet) |
 | 7. Spring MVC | Controller, mapping và tham số yêu cầu | [07-spring-mvc/02-controller-va-tham-so](07-spring-mvc/02-controller-va-tham-so) |
 | 7. Spring MVC | View, validation và xử lý lỗi | [07-spring-mvc/03-view-validation-loi](07-spring-mvc/03-view-validation-loi) |
+| 8. Spring Boot | Giới thiệu và kiến trúc Spring Boot | [08-spring-boot/01-gioi-thieu-kien-truc](08-spring-boot/01-gioi-thieu-kien-truc) |
