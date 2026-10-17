@@ -43,7 +43,7 @@ curl http://localhost:8080/hello
 
 ## Kết quả mong đợi
 
-Kết quả của `TourDemo` (đã bỏ log ở stderr; dòng danh sách auto-configuration dài nên được rút gọn bằng dấu ba chấm ở bài học):
+Kết quả của `TourDemo` (đã bỏ log ở stderr):
 
 ```text
 spring boot 4.1.1, spring framework 7.0.9, tomcat 11.0.24.0
